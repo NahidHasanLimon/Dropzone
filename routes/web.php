@@ -26,3 +26,7 @@ Route::get('/images-show', 'UploadImagesController@index');
 Route::get('/new', 'UploadImagesControllerNew@create');
 Route::get('/images-show-new', 'UploadImagesControllerNew@index');
 Route::post('/images-save-new', 'UploadImagesControllerNew@store');
+
+Route::get('/preload', 'UploadImagesControllerNew@index_preload');
+
+Route::get('/preload-image', 'UploadImagesControllerNew@preload_images');

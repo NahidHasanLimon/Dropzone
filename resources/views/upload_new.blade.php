@@ -18,13 +18,16 @@
         <div class="col-sm-10 offset-sm-1">
             <h4 class="page-heading">This will trigger by dropzone init function! another input value will append along  dropzone images </h4>
             <h2 class="page-heading">Upload your Images <span id="counter"></span></h2>
+            <h4><div class="dz-message" data-dz-message><span>Your Custom Message</span></div></h4>
             <form role="form" enctype="multipart/form-data" action="{{ url('/images-save-new') }}" method="post" id="new_upload_form">
     {{-- @csrf --}}
 
     <!-- You can add extra form fields here -->
+    
+
     <div class="form-group row">
         <div class="col-sm-3">
-            <label class="form-label"> Enter  a name </label>
+            <label class="form-label"><b>Enter a name </b> </label>
         </div> 
         <div class="col-sm-9">
             
@@ -46,6 +49,7 @@
     <!-- You can add extra form fields here -->
 
     <button type="submit" id="new_upload_submit_button" class="btn btn-rounded btn-lg btn-info m-2 float-right">Submit</button>
+    <button type="button" id="cancelButton" class="btn btn-rounded btn-lg btn-warning m-2 float-right">Remove All</button>
 </form>
         </div>
     </div>

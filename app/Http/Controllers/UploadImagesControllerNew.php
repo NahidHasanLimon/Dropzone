@@ -31,6 +31,23 @@ class UploadImagesControllerNew extends Controller
         $photos_new = New_Upload::all();
         return view('uploaded-images-new', compact('photos_new'));
     }
+  public function index_preload()
+    {
+        $photos_new = New_Upload::all();
+        return view('preload', compact('photos_new'));
+    }
+     public function preload_images()
+    {
+        $photos= New_Upload::all();
+        foreach ($photos as $file) {
+        $obj['name'] = $file['filename']; //get the filename in array
+        $obj['size'] = filesize("images/".$file['filename']); //get the flesize in array
+        $result[] = $obj; // copy it to another array
+        }
+         // echo json_encode($result);
+      return response()->json($result);
+         // dd($result);
+    }
  
     /**
      * Show the form for creating uploading new images.
