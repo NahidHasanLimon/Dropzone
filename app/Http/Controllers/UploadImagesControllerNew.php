@@ -31,23 +31,7 @@ class UploadImagesControllerNew extends Controller
         $photos_new = New_Upload::all();
         return view('uploaded-images-new', compact('photos_new'));
     }
-  public function index_preload()
-    {
-        $photos_new = New_Upload::all();
-        return view('preload', compact('photos_new'));
-    }
-     public function preload_images()
-    {
-        $photos= New_Upload::all();
-        foreach ($photos as $file) {
-        $obj['name'] = $file['filename']; //get the filename in array
-        $obj['size'] = filesize("images/".$file['filename']); //get the flesize in array
-        $result[] = $obj; // copy it to another array
-        }
-         // echo json_encode($result);
-      return response()->json($result);
-         // dd($result);
-    }
+ 
  
     /**
      * Show the form for creating uploading new images.
@@ -105,6 +89,32 @@ class UploadImagesControllerNew extends Controller
         return Response::json([
             'message' => 'Image saved Successfully'
         ], 200);
+    }
+      public function destroy(Request $request)
+    {
+        $filename = $request->id;
+        $uploaded_image = New_Upload::where('original_name', basename($filename))->first();
+ 
+        if (empty($uploaded_image)) {
+            return Response::json(['message' => 'Sorry file does not exist'], 400);
+        }
+ 
+        $file_path = $this->photos_path . '/' . $uploaded_image->filename;
+        $resized_file = $this->photos_path . '/' . $uploaded_image->resized_name;
+ 
+        if (file_exists($file_path)) {
+            unlink($file_path);
+        }
+ 
+        if (file_exists($resized_file)) {
+            unlink($resized_file);
+        }
+ 
+        if (!empty($uploaded_image)) {
+            $uploaded_image->delete();
+        }
+ 
+        return Response::json(['message' => 'File successfully delete'], 200);
     }
  
     /**

@@ -19,6 +19,8 @@ Route::get('/', 'UploadImagesController@create');
 Route::post('/images-save', 'UploadImagesController@store');
 
 Route::post('/images-delete', 'UploadImagesController@destroy');
+
+
 Route::get('/images-show', 'UploadImagesController@index');
 
 
@@ -27,6 +29,6 @@ Route::get('/new', 'UploadImagesControllerNew@create');
 Route::get('/images-show-new', 'UploadImagesControllerNew@index');
 Route::post('/images-save-new', 'UploadImagesControllerNew@store');
 
-Route::get('/preload', 'UploadImagesControllerNew@index_preload');
-
-Route::get('/preload-image', 'UploadImagesControllerNew@preload_images');
+Route::get('/preload', 'preloadedImageController@index_preload');
+Route::get('/preload-image', 'preloadedImageController@preload_images');
+Route::post('/images-delete-preload', 'preloadedImageController@destroy');

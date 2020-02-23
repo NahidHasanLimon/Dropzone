@@ -37,6 +37,7 @@
                 this.on('sendingmultiple', function (data, xhr, formData) {
                     formData.append("name", $("#name").val());
 
+
                 });
                 this.on('queuecomplete', function( file ){
                       alert("Successfully uploaded all images!");

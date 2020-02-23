@@ -31,34 +31,7 @@
                     console.log(mockFile.name);
                     console.log(mockFile.size);
                     console.log(mockFile.id);
-                 // wrapperThis.files.push(mockFile); // here you add them into the files array
-    // deleteBntDropzone.addEventListener("click", function (e) {
-    //                     // Make sure the button click doesn't submit the form:
-    //                     e.preventDefault();
-    //                     e.stopPropagation();
-    //                     console.log(mockFile);
-    //                     if(confirm("Do you want to Delete the Image?")){
-    //                           $.post({
-    //                     url: '/images-delete-preload',
-    //                     data: {id: mockFile.name},
-    //                     dataType: 'json',
-    //                     headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         },
-    //         success: function (data) {
-    //              wrapperThis.removeFile(mockFile);
-    //                         // total_photos_counter--;
-    //                         // $("#counter").text("# " + total_photos_counter);
-    //                     }
-    //         });
-    //                     }
-                      
-    //                 // Remove the file preview.
-    //                     // wrapperThis.removeFile(file);
-    //                     // If you want to the delete the file on the server as well,
-    //                     // you can do the AJAX request here.
-
-    //                 });
+                
             });
 
         });
@@ -95,13 +68,7 @@
                 this.on('sendingmultiple', function (data, xhr, formData) {
                     formData.append("name", $("#name").val());
                 });
-
-               
-
-                // this.on('queuecomplete', function( file ){
-                //       alert("Successfully uploaded all images!");
-                //      // wrapperThis.removeAllFiles(true);
-                // });  
+ 
                  $(document).on('click','#cancelButton',function(e){
                         alert("Are you sure to remove all form list ??") ;
                         wrapperThis.removeAllFiles(true);
@@ -124,33 +91,7 @@
                                  mockFile.previewElement.appendChild(deleteBntDropzone);
                                  wrapperThis.emit('thumbnail', mockFile, "/images/"+value.name)
                                  wrapperThis.emit('complete', mockFile)
-            //                         deleteBntDropzone.addEventListener("click", function (e) {
-            //             // Make sure the button click doesn't submit the form:
-            //             e.preventDefault();
-            //             e.stopPropagation();
-            //             console.log(mockFile);
-            //             if(confirm("Do you want to Delete the Image?")){
-            //                   $.post({
-            //             url: '/images-delete-preload',
-            //             data: {id: mockFile.name},
-            //             dataType: 'json',
-            //             headers: {
-            //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            // },
-            // success: function (data) {
-            //      wrapperThis.removeFile(mockFile);
-            //                 // total_photos_counter--;
-            //                 // $("#counter").text("# " + total_photos_counter);
-            //             }
-            // });
-            //             }
-                      
-            //         // Remove the file preview.
-            //             // wrapperThis.removeFile(file);
-            //             // If you want to the delete the file on the server as well,
-            //             // you can do the AJAX request here.
-
-            //         });
+            // 
                              });
                          },
                          error: function(response){
@@ -166,3 +107,25 @@
             // end of init
         };
         // end of dropzone
+  $(document).on('click','.deleteBntDropzone',function(e){
+    e.preventDefault();
+                                e.preventDefault();
+                                 var name = $(this).data('image_name');
+                                      if(confirm("are you sure to delete ?")){
+                                       $.ajax({
+                                          url: '/images-delete-preload',
+                                          method:"POST",
+                                           data: { id: name },
+                                        dataType:'JSON',
+                                         headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+                        
+                                          success:function(data)
+                                          {
+                                             alert();
+                                          }
+                                          
+                                      });
+                                  }
+                        });
