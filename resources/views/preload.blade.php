@@ -11,9 +11,13 @@
     <script src="{{ url('/js/dropzone.js') }}"></script>
     <script src="{{ url('/js/dropzone-config-with-preload.js') }}"></script>
 @endsection
- 
+ @section('loaderSection')
+ <div id='loadingmessage' >
+  <img src="{{ url('/images/loader/dr.gif') }}"  style="display: none;" />
+</div>
+ @endsection
 @section('content')
- 
+
     <div class="row">
         <div class="col-sm-10 offset-sm-1">
             <h4 class="page-heading">This will trigger by dropzone init function! another input value will append along  dropzone images </h4>

@@ -10,8 +10,22 @@
     <link rel="stylesheet" href="{{ url('/css/bootstrap.css') }}">
  
     @yield('head')
+     <style>
+        .loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    /*background: {{ url('/images/loader/dr.gif') }} 50% 50% no-repeat rgb(249,249,249);*/
+    /*background: url('gif/giphy.gif') 50% 50% no-repeat rgb(249,249,249);*/
+    opacity: .8;
+}
+    </style>
 </head>
 <body>
+       @yield('loaderSection')
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{{ url('/') }}">Upload</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
